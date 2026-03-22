@@ -9,6 +9,7 @@ function App() {
   const [isGrid, setIsGrid] = useState(true);
 
   // Ao carregar a página, busca todos os personagens
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchCharacters('');
   }, []);
