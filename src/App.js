@@ -2,19 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // Estados da aplicação
   const [characters, setCharacters] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [isGrid, setIsGrid] = useState(true);
 
-  // Ao carregar a página, busca todos os personagens
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchCharacters('');
   }, []);
 
-  // Função que busca personagens na API
   const fetchCharacters = async (termo = search) => {
     setLoading(true);
     const url = termo
@@ -26,7 +22,6 @@ function App() {
     setLoading(false);
   };
 
-  // Função chamada ao submeter o formulário de busca
   const handleSearch = (e) => { 
     e.preventDefault();
     fetchCharacters(search);
@@ -35,7 +30,6 @@ function App() {
 
   return (
     <div className="app">
-      {/*Cabeçalho - clique para voltar ao início*/}
       <header className="header">
         <img 
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/1200px-Rick_and_Morty.svg.png"
@@ -45,7 +39,6 @@ function App() {
       </header>
 
       <main className="main">
-        {/* Formulário de busca */}
         <form onSubmit={handleSearch} className ="search-form">
           <input 
           type="text"
@@ -56,14 +49,12 @@ function App() {
           <button type="submit" className="search-button">Buscar</button>
         </form>
 
-        {/* Botão para alternar entre grade e lista */}
         <button 
           onClick={() => setIsGrid(!isGrid)} 
           className="toggle-button">
           {isGrid ? 'Ver em Lista' : 'Ver em Grade'}
         </button>
 
-        {/* Exibe carregando ou os personagens */}
         {loading ? (
           <p className="loading">Carregando...</p>
         ) : (
@@ -80,7 +71,6 @@ function App() {
         )}
       </main>
 
-        {/* Rodapé */}
       <footer className="footer">
         <p>Desenvolvido por Lucas P. Santana - Ciência da Computação - P3 - Unipê</p>
       </footer>
